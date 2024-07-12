@@ -94,8 +94,8 @@ namespace CRUD.Test.Services
             // Act
             var result = await _empregadoService.FindByMatricula(1);
 
-            // Assert ddd
-            Assert.True(result.IsValid);
+            // Assert
+            Assert.False(result.IsValid);
             Assert.Null(result.Result);
             Assert.NotNull(result.Content);
         }
