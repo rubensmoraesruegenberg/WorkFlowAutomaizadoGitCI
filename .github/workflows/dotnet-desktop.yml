@@ -3,27 +3,29 @@ name: Build and Test .NET 6.0 Project
 on:
   push:
     branches:
-      - main  # ajuste conforme o nome da sua branch principal
+      - main  # vai executar a pipe quando for feito um push para a branhc main
   pull_request:
     branches:
-      - main  # ajuste conforme o nome da sua branch principal
+      - main  # vai executar a pipe quando for feito um pull-request para a branhc main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # a máquina que vai utilizar
+    #
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2 # a versão
     
-    - name: Setup .NET SDK 6.0
-      uses: actions/setup-dotnet@v1
+    - name: Setup .NET SDK 6.0 #name do passo
+      uses: actions/setup-dotnet@v1  #step 1 - a versão que vai utilizar no net core
       with:
         dotnet-version: 6.0.x  # ajuste para a versão específica do .NET SDK 6.0 que você está usando
     
+        #TEM QUE PASSAR O CAMINHO DO PROJETO PARA FUNCIONAR CORRETAMENTE
     - name: Restore dependencies
-      run: dotnet restore ./CRUD_API_DDD-main/CRUD_API_DDD/CRUD_API_DDD.sln
+      run: dotnet restore ./CRUD_API_DDD-main/CRUD_API_DDD/CRUD_API_DDD.sln #restaura os pacotes do projeto
       
     - name: Build
-      run: dotnet build ./CRUD_API_DDD-main/CRUD_API_DDD/CRUD_API_DDD.sln --configuration Release  # ajuste a configuração conforme necessário
+      run: dotnet build ./CRUD_API_DDD-main/CRUD_API_DDD/CRUD_API_DDD.sln --configuration Release  # Verifica se o projeto está biudando
     
     - name: Test
-      run: dotnet test ./CRUD_API_DDD-main/CRUD_API_DDD/CRUD_API_DDD.sln --configuration Release --no-build --verbosity normal  # ajuste conforme a estrutura de testes do seu projeto
+      run: dotnet test ./CRUD_API_DDD-main/CRUD_API_DDD/CRUD_API_DDD.sln --configuration Release --no-build --verbosity normal  # Verifica se está passando nos testes
