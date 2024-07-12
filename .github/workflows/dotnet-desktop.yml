@@ -20,10 +20,10 @@ jobs:
         dotnet-version: 6.0.x  # ajuste para a versão específica do .NET SDK 6.0 que você está usando
     
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./CRUD_API_DDD-main/CRUD_API_DDD/CRUD_API_DDD.sln
       
     - name: Build
-      run: dotnet build --configuration Release  # ajuste a configuração conforme necessário
+      run: dotnet build --configuration Release ./CRUD_API_DDD-main/CRUD_API_DDD/CRUD_API_DDD.sln  # ajuste a configuração conforme necessário
     
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal  # ajuste conforme a estrutura de testes do seu projeto
