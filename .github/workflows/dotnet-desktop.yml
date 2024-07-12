@@ -23,7 +23,7 @@ jobs:
       run: dotnet restore ./CRUD_API_DDD-main/CRUD_API_DDD/CRUD_API_DDD.sln
       
     - name: Build
-      run: dotnet build --configuration Release ./CRUD_API_DDD-main/CRUD_API_DDD/CRUD_API_DDD.sln  # ajuste a configuração conforme necessário
+      run: dotnet build ./CRUD_API_DDD-main/CRUD_API_DDD/CRUD_API_DDD.sln --configuration Release  # ajuste a configuração conforme necessário
     
     - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal  # ajuste conforme a estrutura de testes do seu projeto
+      run: dotnet test ./CRUD_API_DDD-main/CRUD_API_DDD/CRUD_API_DDD.sln --configuration Release --no-build --verbosity normal  # ajuste conforme a estrutura de testes do seu projeto
