@@ -1,0 +1,29 @@
+name: Build and Test .NET 6.0 Project
+
+on:
+  push:
+    branches:
+      - main  # ajuste conforme o nome da sua branch principal
+  pull_request:
+    branches:
+      - main  # ajuste conforme o nome da sua branch principal
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup .NET SDK 6.0
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x  # ajuste para a versão específica do .NET SDK 6.0 que você está usando
+    
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --configuration Release  # ajuste a configuração conforme necessário
+    
+    - name: Test
+      run: dotnet test --configuration Release --no-build --verbosity normal  # ajuste conforme a estrutura de testes do seu projeto

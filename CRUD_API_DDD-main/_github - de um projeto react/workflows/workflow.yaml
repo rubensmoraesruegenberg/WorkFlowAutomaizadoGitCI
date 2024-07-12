@@ -1,0 +1,31 @@
+name: Continuos Integrations
+
+#qual vai ser o evento que vai startar a esteira, se quiser colocar mais opções, utilizar array [pull-rquest, push]
+on: pull_request
+#É possivel colocar condições para o pull request, por exemplo rodar a pipe somente quando
+# for branch master ou master e dev
+#Ex: 
+#on: 
+#  pull_request:
+#    ['master']
+
+#Declarar os jobs, passo a passo da tarefa que queremos utilizar.
+jobs:
+  continuos-integrations: #Nome do comando
+    runs-on: ubuntu-latest #qual máquina virtual do git action que vai executar os comandos desse workflow vai utilizar para o workflow.
+
+    #passos do job
+    steps:
+      - uses: actions/checkout@v3 #comando para pegar o código e baixa para a máquina virtual que o git vai usar
+      #passo 1
+      - name: Using node.js #precisamos instalar o node na máquina virtual para rodar os camandos do projeto
+        uses: actions/setup-node@v2 #a action que vai rodar
+        with: # passa argumentos para a action
+          node-version: 21.x #o argumento é a versão do node que eu quero trabalhar, pode ser a mesma que tem na máquina local que executou o projeto só dar o comando node --version no terminal
+      #passo 2
+      - name: run install, build and test
+        run: |
+          npm install
+          npm run build 
+          npm run test
+      
