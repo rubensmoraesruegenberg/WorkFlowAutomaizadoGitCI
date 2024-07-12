@@ -37,7 +37,7 @@ namespace CRUD.Test.Services
         [Fact]
         public async Task CreateEmpregado_ReturnSucess()
         {
-            // Arrange
+            // Arrange Teste
             var empregado = _fixture.Create<Empregado>();
 
             _mockEmpregadoRepository.Setup(x => x.InsertAsync(empregado));
